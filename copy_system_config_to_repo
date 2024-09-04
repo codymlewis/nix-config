@@ -1,3 +1,3 @@
 #!/bin/sh
 
-cp -r /etc/nixos/{flake,home}.nix /etc/nixos/hosts/ /etc/nixos/flake.lock ./
+cp -r /etc/nixos/{flake,home}.nix /etc/nixos/hosts/ /etc/nixos/flake.lock ./configs/
