@@ -26,8 +26,8 @@
             pkgs.vimPlugins.vim-airline
             pkgs.vimPlugins.vim-gitgutter
             pkgs.vimPlugins.nvim-autopairs
-            pkgs.vimPlugins.mini-nvim
             pkgs.vimPlugins.indentLine
+            pkgs.vimPlugins.mini-nvim
             pkgs.vimPlugins.molokai
         ];
 
@@ -62,10 +62,11 @@
             bo.shiftwidth = 4
             bo.expandtab = true
             bo.autoindent = true
+            bo.undofile = true
 
             vim.g.netrw_liststyle = 3
             vim.g.netrw_banner = 0
-            cmd('set undofile')
+
             cmd([[
                 augroup filetypedetect
                     autocmd!
@@ -95,6 +96,11 @@
             require("lspconfig").pylsp.setup{}
 
             require('mini.completion').setup()
+            local imap_expr = function(lhs, rhs)
+                vim.keymap.set('i', lhs, rhs, { expr = true })
+            end
+            imap_expr('<Tab>',   [[pumvisible() ? "\<C-n>" : "\<Tab>"]])
+            imap_expr('<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]])
 
             require('marks').setup()
 
