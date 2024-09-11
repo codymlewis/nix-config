@@ -1,15 +1,15 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
 	imports = [
 		./common.nix
 	];
-
-	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-		"nvidia-x11"
-		"nvidia-settings"
-		"nvidia-persistenced"
+	nixpkgs.config.allowUnfree = true;
+	  
+	environment.systemPackages = with pkgs; [
+		nvtopPackages.nvidia
 	];
+
 
 	# Enable OpenGL
 	hardware.opengl = {
