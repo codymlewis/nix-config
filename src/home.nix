@@ -5,7 +5,6 @@
     home.homeDirectory = "/home/cody";
 
     home.packages = [
-        pkgs.fish
         pkgs.firefox
         pkgs.strawberry
         pkgs.zotero
@@ -13,6 +12,16 @@
         pkgs.krita
         pkgs.nil
     ];
+
+    programs.fish = {
+        enable = true;
+        interactiveShellInit = ''
+           set fish_greeting
+           abbr -a -- x exit
+           abbr -a -- g git
+           abbr -a -- grep 'grep --color'
+        '';
+    };
 
     programs.neovim = {
         enable = true;
