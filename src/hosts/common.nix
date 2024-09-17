@@ -46,13 +46,19 @@
         LC_TIME = "en_AU.UTF-8";
     };
 
-    services.xserver.enable = true;
-    # Enable the KDE Plasma Desktop Environment.
-    services.displayManager.sddm.wayland.enable = true;
     services.desktopManager.plasma6.enable = true;
 
-    # Enable CUPS to print documents.
-    services.printing.enable = false;
+    services.greetd = {
+        enable = true;
+        settings = {
+            default_session = {
+                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd startplasma-wayland";
+                user = "cody";
+            };
+        };
+    };
+
+
 
     # Enable sound with pipewire.
     hardware.pulseaudio.enable = false;
@@ -67,7 +73,7 @@
     users.users.cody = {
         isNormalUser = true;
         description = "Cody";
-        extraGroups = [ "networkmanager" "wheel" ];
+        extraGroups = [ "networkmanager" "wheel" "video" ];
     };
 
     environment.systemPackages = with pkgs; [

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
 	imports = [
@@ -9,7 +9,6 @@
 	environment.systemPackages = with pkgs; [
 		nvtopPackages.nvidia
 	];
-
 
 	# Enable OpenGL
 	hardware.opengl = {
@@ -65,8 +64,6 @@
 	};
 
 	networking.firewall.allowedTCPPorts = [ 22 ];
-
-	services.displayManager.autoLogin.enable = false;
 
 	system.autoUpgrade.flake = "/etc/nixos#unit2";
 
