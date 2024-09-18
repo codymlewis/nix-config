@@ -1,70 +1,69 @@
 { config, pkgs, ... }:
 
 {
-	imports = [
-		./common.nix
-	];
-	nixpkgs.config.allowUnfree = true;
-	  
-	environment.systemPackages = with pkgs; [
-		nvtopPackages.nvidia
-	];
+    imports = [
+        ./common.nix
+    ];
+    nixpkgs.config.allowUnfree = true;
+      
+    environment.systemPackages = with pkgs; [
+        nvtopPackages.nvidia
+    ];
 
-	# Enable OpenGL
-	hardware.opengl = {
-		enable = true;
-	};
+    # Enable OpenGL
+    hardware.opengl = {
+        enable = true;
+    };
 
-	services.xserver.videoDrivers = ["nvidia"];
+    services.xserver.videoDrivers = ["nvidia"];
 
-	hardware.nvidia = {
+    hardware.nvidia = {
+        # Modesetting is required.
+        modesetting.enable = true;
 
-		# Modesetting is required.
-		modesetting.enable = true;
+        # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+        # Enable this if you have graphical corruption issues or application crashes after waking
+        # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+        # of just the bare essentials.
+        powerManagement.enable = false;
 
-		# Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-		# Enable this if you have graphical corruption issues or application crashes after waking
-		# up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
-		# of just the bare essentials.
-		powerManagement.enable = false;
+        # Fine-grained power management. Turns off GPU when not in use.
+        # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+        powerManagement.finegrained = false;
 
-		# Fine-grained power management. Turns off GPU when not in use.
-		# Experimental and only works on modern Nvidia GPUs (Turing or newer).
-		powerManagement.finegrained = false;
+        # Use the NVidia open source kernel module (not to be confused with the
+        # independent third-party "nouveau" open source driver).
+        # Support is limited to the Turing and later architectures. Full list of 
+        # supported GPUs is at: 
+        # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+        # Only available from driver 515.43.04+
+        # Currently alpha-quality/buggy, so false is currently the recommended setting.
+        open = false;
 
-		# Use the NVidia open source kernel module (not to be confused with the
-		# independent third-party "nouveau" open source driver).
-		# Support is limited to the Turing and later architectures. Full list of 
-		# supported GPUs is at: 
-		# https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
-		# Only available from driver 515.43.04+
-		# Currently alpha-quality/buggy, so false is currently the recommended setting.
-		open = false;
+        # Enable the Nvidia settings menu,
+        # accessible via `nvidia-settings`.
+        nvidiaSettings = true;
 
-		# Enable the Nvidia settings menu,
-		# accessible via `nvidia-settings`.
-		nvidiaSettings = true;
+        # Optionally, you may need to select the appropriate driver version for your specific GPU.
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
 
-		# Optionally, you may need to select the appropriate driver version for your specific GPU.
-		package = config.boot.kernelPackages.nvidiaPackages.stable;
-	};
+    networking.hostName = "unit2";
 
-	networking.hostName = "unit2";
+    services.openssh = {
+        enable = true;
+        ports = [ 22 ];
+        settings = {
+            PasswordAuthentication = false;
+            AllowUsers = [ "cody" ];
+            UseDns = true;
+            X11Forwarding = false;
+            PermitRootLogin = "no";
+        };
+    };
 
-	services.openssh = {
-		enable = true;
-		ports = [ 22 ];
-		settings = {
-			PasswordAuthentication = false;
-			AllowUsers = [ "cody" ];
-			UseDns = true;
-			X11Forwarding = false;
-			PermitRootLogin = "no";
-		};
-	};
+    networking.firewall.allowedTCPPorts = [ 22 ];
 
-	networking.firewall.allowedTCPPorts = [ 22 ];
-
-	system.autoUpgrade.flake = "/etc/nixos#unit2";
+    system.autoUpgrade.flake = "/etc/nixos#unit2";
 
 }

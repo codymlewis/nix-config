@@ -17,19 +17,21 @@
 
     networking = {
         nameservers = [ "1.1.1.1" "9.9.9.9" ];
+        dhcpcd.extraConfig = "nohook resolve.conf";
 
         networkmanager = {
-                enable = true;
-                dns = "systemd-resolved";
+            enable = true;
+            dns = "systemd-resolved";
         };
     };
+    systemd.network.wait-online.enable = false;
 
     services.resolved = {
         enable = true;
-        dnssec = "true";
+        dnssec = "false";
         domains = [ "~." ];
         fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
-        dnsovertls = "true";
+        dnsovertls = "opportunistic";
     };
 
     time.timeZone = "Australia/Sydney";
@@ -47,7 +49,6 @@
     };
 
     services.desktopManager.plasma6.enable = true;
-
     services.greetd = {
         enable = true;
         settings = {
@@ -57,8 +58,6 @@
             };
         };
     };
-
-
 
     # Enable sound with pipewire.
     hardware.pulseaudio.enable = false;
@@ -121,5 +120,4 @@
     };
 
     system.stateVersion = "24.05";
-
 }
