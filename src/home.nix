@@ -50,8 +50,14 @@
 
             o.history = 500
             o.autoread = true
-            cmd('autocmd FocusGained,BufEnter * checktime')
-            
+            vim.api.nvim_create_autocmd({'FocusGained', 'BufEnter'}, {
+                pattern = { '*' },
+                callback = function()
+                    vim.api.nvim_command [[checktime]]
+                end,
+                group = vim.api.nvim_create_augroup("Detect file changes", { clear = true }),
+            })
+
             o.smartcase = true
             o.hlsearch = true
             o.incsearch = true
@@ -76,20 +82,29 @@
             vim.g.netrw_liststyle = 3
             vim.g.netrw_banner = 0
 
-            cmd([[
-                augroup filetypedetect
-                    autocmd!
-                    autocmd BufRead,BufNewFile *tex setlocal spell
-                    autocmd BufRead,BufNewFile *md setlocal spell
-                augroup END
-            ]])
+            vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
+                pattern = { '*.tex', '*.md', '*.txt' },
+                callback = function()
+                    vim.opt_local.spell = true
+                end,
+                group = vim.api.nvim_create_augroup("Enable spell checking", { clear = true }),
+            })
 
-            cmd([[
-                augroup filewriteprocessing
-                    autocmd!
-                    autocmd BufWritePre * %s/\\s\\+$//e
-                augroup END
-            ]])
+            vim.api.nvim_create_autocmd('BufWritePre', {
+                pattern = { '*' },
+                callback = function()
+                    vim.api.nvim_command [[%s/\s\+$//e]]
+                end,
+                group = vim.api.nvim_create_augroup("Clean trailing spaces", { clear = true }),
+            })
+
+            vim.api.nvim_create_autocmd({'BufLeave', 'FocusLost'}, {
+                pattern = { '*' },
+                callback = function()
+                    vim.api.nvim_command [[write]]
+                end,
+                group = vim.api.nvim_create_augroup("Autosave buffer", { clear = true }),
+            })
 
             map('n', '<Space>', "", {})
             vim.g.mapleader = ' '
@@ -103,6 +118,7 @@
 
             require("lspconfig").nil_ls.setup{}
             require("lspconfig").pylsp.setup{}
+            require("lspconfig").rust_analyzer.setup{}
 
             require('mini.completion').setup()
             local imap_expr = function(lhs, rhs)
