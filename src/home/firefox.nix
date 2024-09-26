@@ -60,11 +60,13 @@
                     "browser.newtabpage.activity-stream.showSponsored" = { Value = false; Status = "locked"; };
                     "browser.newtabpage.activity-stream.system.showSponsored" = { Value = false; Status = "locked"; };
                     "browser.newtabpage.activity-stream.showSponsoredTopSites" = { Value = false; Status = "locked"; };
+                    "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" = { Value = false; Status = "locked"; };
                   };
             };
         };
         profiles.default.settings = {
             "browser.startup.homepage" = "about:home";
+            "browser.newtabpage.activity-stream.topSitesRows" = 2;
             "browser.newtabpage.pinned" = [
                 {
                     label = "proton";
@@ -79,8 +81,8 @@
                     url = "https://app.standardnotes.com";
                 }
                 {
-                    label = "outlook";
-                    url = "https://outlook.office.com/mail/";
+                    label = "UoN Email";
+                    url = "https://webmail.newcastle.edu.au";
                 }
                 {
                     label = "overleaf";
