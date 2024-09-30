@@ -72,7 +72,7 @@
     users.users.cody = {
         isNormalUser = true;
         description = "Cody";
-        extraGroups = [ "networkmanager" "wheel" "video" ];
+        extraGroups = [ "networkmanager" "wheel" "video" "gamemode" ];
     };
 
     environment.systemPackages = with pkgs; [
