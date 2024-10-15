@@ -54,6 +54,7 @@
                 };
 
                 Preferences = {
+                    "widget.use-xdg-desktop-portal.file-picker" = { Value = 1; Status = "locked"; };
                     "browser.contentblocking.category" = { Value = "strict"; Status = "locked"; };
                     "extensions.pocket.enabled" = { Value = false; Status = "locked"; };
                     "extensions.screenshots.disabled" = { Value = true; Status = "locked"; };
@@ -82,7 +83,7 @@
                 }
                 {
                     label = "UoN Email";
-                    url = "https://webmail.newcastle.edu.au";
+                    url = "https://outlook.office.com/mail/";
                 }
                 {
                     label = "overleaf";

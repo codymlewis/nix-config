@@ -6,7 +6,6 @@
 
     home.packages = [
         pkgs.strawberry
-        pkgs.zotero
         pkgs.wl-clipboard
         pkgs.krita
         pkgs.nil
