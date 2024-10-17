@@ -26,6 +26,7 @@
 
                 ExtensionSettings = {
                     "*".installation_mode = "blocked";
+                    # See about:support for addon ids
                     "addon@darkreader.org" = {
                         install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
                         installation_mode = "force_installed";
@@ -43,6 +44,11 @@
                     };
                     "sponsorBlocker@ajay.app" = {
                         install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
+                        installation_mode = "force_installed";
+                        default_area = "menupanel";
+                    };
+                    "ezproxyredirectfoxified@foo.bar" = {
+                        install_url = "https://addons.mozilla.org/firefox/downloads/latest/ezproxy-redirect-foxified/latest.xpi";
                         installation_mode = "force_installed";
                         default_area = "menupanel";
                     };
