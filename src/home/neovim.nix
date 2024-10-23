@@ -19,15 +19,8 @@
         ];
 
         extraLuaConfig = ''
-            local o = vim.o
-            local wo = vim.wo
-            local bo = vim.bo
-            local cmd = vim.cmd
-            local map = vim.api.nvim_set_keymap
-            local api = vim.api
-
-            o.history = 500
-            o.autoread = true
+            vim.o.history = 500
+            vim.o.autoread = true
             vim.api.nvim_create_autocmd({'FocusGained', 'BufEnter'}, {
                 pattern = { '*' },
                 callback = function()
@@ -36,26 +29,26 @@
                 group = vim.api.nvim_create_augroup("Detect file changes", { clear = true }),
             })
 
-            o.smartcase = true
-            o.hlsearch = true
-            o.incsearch = true
-            o.magic = true
-            o.wildmenu = true
-            o.background = 'dark'
-            o.encoding = 'utf8'
-            o.swapfile = false
-            o.title = true
+            vim.o.smartcase = true
+            vim.o.hlsearch = true
+            vim.o.incsearch = true
+            vim.o.magic = true
+            vim.o.wildmenu = true
+            vim.o.background = 'dark'
+            vim.o.encoding = 'utf8'
+            vim.o.swapfile = false
+            vim.o.title = true
 
-            wo.number = true
-            wo.lbr = true
-            wo.wrap = true
+            vim.wo.number = true
+            vim.wo.lbr = true
+            vim.wo.wrap = true
 
-            bo.tabstop = 8
-            bo.softtabstop = 4
-            bo.shiftwidth = 4
-            bo.expandtab = true
-            bo.autoindent = true
-            bo.undofile = true
+            vim.bo.tabstop = 8
+            vim.bo.softtabstop = 4
+            vim.bo.shiftwidth = 4
+            vim.bo.expandtab = true
+            vim.bo.autoindent = true
+            vim.bo.undofile = true
 
             vim.g.netrw_liststyle = 3
             vim.g.netrw_banner = 0
@@ -84,18 +77,18 @@
                 group = vim.api.nvim_create_augroup("Autosave buffer", { clear = true }),
             })
 
-            map('n', '<Space>', "", {})
+            vim.api.nvim_set_keymap('n', '<Space>', "", {})
             vim.g.mapleader = ' '
 
             options = { noremap = true }
-            map('n', '<leader>s', ':setlocal spell!<cr>', options)
-            map('n', '<leader>p', ':set paste!<cr>', options)
-            map('n', '<leader>e', ':Explore<cr>', options)
-            map('n', '<s-tab>', ':bprevious<cr>', options)
-            map('n', '<tab>', ':bnext<cr>', options)
+            vim.api.nvim_set_keymap('n', '<leader>s', ':setlocal spell!<cr>', options)
+            vim.api.nvim_set_keymap('n', '<leader>p', ':set paste!<cr>', options)
+            vim.api.nvim_set_keymap('n', '<leader>e', ':Explore<cr>', options)
+            vim.api.nvim_set_keymap('n', '<s-tab>', ':bprevious<cr>', options)
+            vim.api.nvim_set_keymap('n', '<tab>', ':bnext<cr>', options)
 
             require("lspconfig").nil_ls.setup{}
-            require("lspconfig").pylsp.setup{}
+            require("lspconfig").ruff_lsp.setup{}
             require("lspconfig").rust_analyzer.setup{}
 
             require('mini.completion').setup()
@@ -108,8 +101,8 @@
             require('marks').setup()
 
             require('nvim_comment').setup()
-            map('n', ';', ':CommentToggle<cr>', options)
-            map('v', ';', ':CommentToggle<cr>', options)
+            vim.api.nvim_set_keymap('n', ';', ':CommentToggle<cr>', options)
+            vim.api.nvim_set_keymap('v', ';', ':CommentToggle<cr>', options)
 
             require('nvim-autopairs').setup()
 
@@ -117,7 +110,7 @@
             vim.g.tex_conceal = ""
             vim.g.gitgutter_enabled = 1
 
-            api.nvim_command [[colorscheme molokai]]
+            vim.api.nvim_command [[colorscheme molokai]]
         '';
     };
 
