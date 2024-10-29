@@ -25,17 +25,12 @@
                 DisplayMenuBar = "default_off";
 
                 ExtensionSettings = {
-                    "*".installation_mode = "blocked";
+                    # "*".installation_mode = "blocked";
                     # See about:support for addon ids
                     "addon@darkreader.org" = {
                         install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
                         installation_mode = "force_installed";
                         default_area = "navbar";
-                    };
-                    "keepassxc-browser@keepassxc.org" = {
-                        install_url = "https://addons.mozilla.org/firefox/downloads/latest/keepassxc-browser/latest.xpi";
-                        installation_mode = "force_installed";
-                        default_area = "menupanel";
                     };
                     "uBlock0@raymondhill.net" = {
                         install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
@@ -44,6 +39,11 @@
                     };
                     "sponsorBlocker@ajay.app" = {
                         install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
+                        installation_mode = "force_installed";
+                        default_area = "menupanel";
+                    };
+                    "78272b6fa58f4a1abaac99321d503a20@proton.me" = {
+                        install_url = "https://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi";
                         installation_mode = "force_installed";
                         default_area = "menupanel";
                     };

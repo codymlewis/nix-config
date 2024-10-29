@@ -9,7 +9,6 @@
         pkgs.wl-clipboard
         pkgs.krita
         pkgs.nil
-        pkgs.keepassxc
     ];
 
     imports = [
