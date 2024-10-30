@@ -54,7 +54,7 @@
             vim.g.netrw_banner = 0
 
             vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
-                pattern = { '*.tex', '*.md', '*.txt' },
+                pattern = { '*.tex', '*.bib', '*.md', '*.txt' },
                 callback = function()
                     vim.opt_local.spell = true
                 end,
