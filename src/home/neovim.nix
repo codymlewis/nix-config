@@ -6,16 +6,18 @@
         viAlias = true;
         vimAlias = true;
 
-        plugins = [
-            pkgs.vimPlugins.nvim-lspconfig
-            pkgs.vimPlugins.marks-nvim
-            pkgs.vimPlugins.nvim-comment
-            pkgs.vimPlugins.vim-airline
-            pkgs.vimPlugins.vim-gitgutter
-            pkgs.vimPlugins.nvim-autopairs
-            pkgs.vimPlugins.indentLine
-            pkgs.vimPlugins.mini-nvim
-            pkgs.vimPlugins.molokai
+        plugins = with pkgs.vimPlugins; [
+            nvim-lspconfig
+            marks-nvim
+            nvim-comment
+            vim-airline
+            vim-gitgutter
+            nvim-autopairs
+            indentLine
+            nvim-cmp
+            cmp-nvim-lsp
+            cmp-buffer
+            molokai
         ];
 
         extraLuaConfig = ''
@@ -87,16 +89,25 @@
             vim.api.nvim_set_keymap('n', '<s-tab>', ':bprevious<cr>', options)
             vim.api.nvim_set_keymap('n', '<tab>', ':bnext<cr>', options)
 
-            require("lspconfig").nil_ls.setup{}
-            require("lspconfig").ruff_lsp.setup{}
-            require("lspconfig").rust_analyzer.setup{}
+            local cmp = require("cmp")
+            cmp.setup({
+                sources = cmp.config.sources({
+                    { name = "nvim_lsp" },
+                }, {
+                    { name = "buffer" },
+                }),
 
-            require('mini.completion').setup()
-            local imap_expr = function(lhs, rhs)
-                vim.keymap.set('i', lhs, rhs, { expr = true })
-            end
-            imap_expr('<Tab>',   [[pumvisible() ? "\<C-n>" : "\<Tab>"]])
-            imap_expr('<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]])
+                mapping = {
+                    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+                    ["<Tab>"] = cmp.mapping.select_next_item(),
+                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+                }
+            })
+
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+            require("lspconfig").nil_ls.setup{ capabilities = capabilities, }
+            require("lspconfig").ruff_lsp.setup{ capabilities = capabilities, }
+            require("lspconfig").rust_analyzer.setup{ capabilities = capabilities, }
 
             require('marks').setup()
 

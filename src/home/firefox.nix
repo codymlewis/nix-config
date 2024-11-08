@@ -55,6 +55,7 @@
                 };
 
                 Preferences = {
+                    "media.hardware-video-decoding.force-enabled" = { Value = true; Status = "locked"; };
                     "widget.use-xdg-desktop-portal.file-picker" = { Value = 1; Status = "locked"; };
                     "browser.contentblocking.category" = { Value = "strict"; Status = "locked"; };
                     "extensions.pocket.enabled" = { Value = false; Status = "locked"; };
