@@ -16,6 +16,9 @@
             indentLine
             nvim-cmp
             cmp-nvim-lsp
+            cmp-nvim-lsp-signature-help
+            cmp-path
+            cmp-cmdline
             cmp-buffer
             molokai
         ];
@@ -91,11 +94,11 @@
 
             local cmp = require("cmp")
             cmp.setup({
-                sources = cmp.config.sources({
+                sources = {
                     { name = "nvim_lsp" },
-                }, {
+                    { name = 'nvim_lsp_signature_help' },
                     { name = "buffer" },
-                }),
+                },
 
                 mapping = {
                     ["<S-Tab>"] = cmp.mapping.select_prev_item(),
@@ -107,6 +110,7 @@
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             require("lspconfig").nil_ls.setup{ capabilities = capabilities, }
             require("lspconfig").ruff_lsp.setup{ capabilities = capabilities, }
+            require("lspconfig").pyright.setup{ capabilities = capabilities, }
             require("lspconfig").rust_analyzer.setup{ capabilities = capabilities, }
 
             require('marks').setup()
