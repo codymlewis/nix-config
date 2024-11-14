@@ -58,6 +58,8 @@
             vim.g.netrw_liststyle = 3
             vim.g.netrw_banner = 0
 
+            vim.opt.clipboard = 'unnamedplus'
+
             vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
                 pattern = { '*.tex', '*.bib', '*.md', '*.txt' },
                 callback = function()
