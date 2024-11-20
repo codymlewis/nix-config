@@ -41,7 +41,7 @@ in
     hardware.opengl.driSupport = true; # This is already enabled by default
     hardware.opengl.driSupport32Bit = true; # For 32 bit applications
 
-    networking.hostName = "unit0";
+    networking.hostName = "pt";
     hardware.bluetooth.enable = true;
 
     environment.systemPackages = with pkgs; [
@@ -77,5 +77,5 @@ in
         };
     };
 
-    system.autoUpgrade.flake = "/etc/nixos#unit0";
+    system.autoUpgrade.flake = "/etc/nixos#pt";
 }

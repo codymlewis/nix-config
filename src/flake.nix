@@ -11,43 +11,43 @@
 
     outputs = { self, nixpkgs, home-manager, ... }: {
         # Home desktop
-        nixosConfigurations.unit0 = nixpkgs.lib.nixosSystem {
+        nixosConfigurations.pt = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
-                ./hosts/unit0.nix
+                ./hosts/pt.nix
 
                 home-manager.nixosModules.home-manager {
-                        home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
-                        home-manager.users.cody = import ./home.nix;
+                    home-manager.useGlobalPkgs = true;
+                    home-manager.useUserPackages = true;
+                    home-manager.users.cody = import ./home.nix;
                 }
             ];
         };
 
         # Laptop
-        nixosConfigurations.unit1 = nixpkgs.lib.nixosSystem {
+        nixosConfigurations.it = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
-                ./hosts/unit1.nix
+                ./hosts/it.nix
 
                 home-manager.nixosModules.home-manager {
-                        home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
-                        home-manager.users.cody = import ./home.nix;
+                    home-manager.useGlobalPkgs = true;
+                    home-manager.useUserPackages = true;
+                    home-manager.users.cody = import ./home.nix;
                 }
             ];
         };
 
-        # University desktop
-        nixosConfigurations.unit2 = nixpkgs.lib.nixosSystem {
+        # University desktops
+        nixosConfigurations.sees = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
-                ./hosts/unit2.nix
+                ./hosts/sees.nix
 
                 home-manager.nixosModules.home-manager {
-                        home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
-                        home-manager.users.cody = import ./home.nix;
+                    home-manager.useGlobalPkgs = true;
+                    home-manager.useUserPackages = true;
+                    home-manager.users.cody = import ./home.nix;
                 }
             ];
         };

@@ -25,7 +25,7 @@
                 DisplayMenuBar = "default_off";
 
                 ExtensionSettings = {
-                    # "*".installation_mode = "blocked";
+                    "*".installation_mode = "blocked";
                     # See about:support for addon ids
                     "addon@darkreader.org" = {
                         install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
@@ -44,6 +44,11 @@
                     };
                     "78272b6fa58f4a1abaac99321d503a20@proton.me" = {
                         install_url = "https://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi";
+                        installation_mode = "force_installed";
+                        default_area = "menupanel";
+                    };
+                    "vpn@proton.ch" = {
+                        install_url = "https://addons.mozilla.org/firefox/downloads/latest/proton-vpn-firefox-extension/latest.xpi";
                         installation_mode = "force_installed";
                         default_area = "menupanel";
                     };

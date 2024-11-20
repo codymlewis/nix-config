@@ -17,7 +17,7 @@
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     networking = {
-        nameservers = [ "1.1.1.1" "9.9.9.9" ];
+    	nameservers = [ "1.1.1.1" "9.9.9.9" ];
         dhcpcd.extraConfig = "nohook resolve.conf";
 
         networkmanager = {
