@@ -15,7 +15,7 @@
         settings = {
             PasswordAuthentication = false;
             AllowUsers = [ "cody" ];
-            UseDns = true;
+            UseDns = false;
             X11Forwarding = false;
             PermitRootLogin = "no";
         };
