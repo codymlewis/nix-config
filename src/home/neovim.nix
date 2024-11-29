@@ -96,6 +96,12 @@
 
             local cmp = require("cmp")
             cmp.setup({
+                snippet = {
+                    expand = function(args)
+                        vim.snippet.expand(args.body)
+                    end,
+                },
+
                 sources = {
                     { name = "nvim_lsp" },
                     { name = 'nvim_lsp_signature_help' },
@@ -106,7 +112,13 @@
                     ["<S-Tab>"] = cmp.mapping.select_prev_item(),
                     ["<Tab>"] = cmp.mapping.select_next_item(),
                     ["<CR>"] = cmp.mapping.confirm({ select = true }),
-                }
+                },
+
+                preselect = cmp.PreselectMode.None,
+
+                completion = {
+                    compteopt = vim.o.completeopt,
+                },
             })
 
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
