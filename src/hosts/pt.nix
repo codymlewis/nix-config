@@ -32,14 +32,25 @@ in
     };
 
     # Ensure amd drivers are setup
-    systemd.tmpfiles.rules = [
-        "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+    systemd.tmpfiles.rules = let
+    	rocmEnv = pkgs.symlinkJoin {
+            name = "rocm-combined";
+	    paths = with pkgs.rocmPackages; [
+                rocblas
+		hipblas
+		clr
+            ];
+    };
+    in [
+        "L+    /opt/rocm/hip   -    -    -     -    ${rocmEnv}"
     ];
-    hardware.opengl.extraPackages = with pkgs; [
+    hardware.graphics.extraPackages = with pkgs; [
         rocmPackages.clr.icd
     ];
-    hardware.opengl.driSupport = true; # This is already enabled by default
-    hardware.opengl.driSupport32Bit = true; # For 32 bit applications
+    hardware.graphics = {
+    	enable = true;
+	enable32Bit = true;
+    };
 
     networking.hostName = "pt";
     hardware.bluetooth.enable = true;
@@ -54,6 +65,7 @@ in
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
         "steam"
         "steam-original"
+        "steam-unwrapped"
         "steam-run"
     ];
     programs.steam = {

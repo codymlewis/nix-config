@@ -11,7 +11,7 @@
 
     # Bootloader.
     boot.loader.systemd-boot.enable = true;
-    boot.loader.systemd-boot.memtest86.enable = true;
+    boot.loader.systemd-boot.memtest86.enable = false;
     boot.loader.efi.canTouchEfiVariables = true;
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -95,7 +95,8 @@
 
     fonts.packages = with pkgs; [
         noto-fonts
-        noto-fonts-cjk
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
         noto-fonts-emoji
         liberation_ttf
         fira-code
@@ -120,5 +121,5 @@
         randomizedDelaySec = "15min";
     };
 
-    system.stateVersion = "24.05";
+    system.stateVersion = "24.11";
 }
