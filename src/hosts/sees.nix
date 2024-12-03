@@ -62,6 +62,12 @@
         };
     };
 
+    programs.tmux = {
+        enable = true;
+        secureSocket = true;
+        terminal = "screen-256color";
+    };
+
     networking.firewall.allowedTCPPorts = [ 22 ];
 
     system.autoUpgrade.flake = "/etc/nixos#sees";
