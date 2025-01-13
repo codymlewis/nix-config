@@ -74,20 +74,6 @@ in
             proton-ge-bin
         ];
     };
-    programs.gamemode = {
-        enable = true;
-        settings = {
-            general = {
-                renice = 10;
-            };
-
-            gpu = {
-                apply_gpu_optimisations = "accept-responsibility";
-                gpu_device = 1;
-                amd_performance_level = "high";
-            };
-        };
-    };
 
     system.autoUpgrade.flake = "/etc/nixos#pt";
 }
