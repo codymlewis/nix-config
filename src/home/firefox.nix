@@ -120,7 +120,7 @@
         };
         profiles.default.search = {
             force = true;
-            default = "StartPage";
+            default = "DuckDuckGo";
             privateDefault = "StartPage";
             engines = {
                 "StartPage" = {

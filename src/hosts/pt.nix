@@ -33,12 +33,12 @@ in
 
     # Ensure amd drivers are setup
     systemd.tmpfiles.rules = let
-    	rocmEnv = pkgs.symlinkJoin {
+        rocmEnv = pkgs.symlinkJoin {
             name = "rocm-combined";
-	    paths = with pkgs.rocmPackages; [
+            paths = with pkgs.rocmPackages; [
                 rocblas
-		hipblas
-		clr
+                hipblas
+                clr
             ];
     };
     in [
@@ -48,8 +48,8 @@ in
         rocmPackages.clr.icd
     ];
     hardware.graphics = {
-    	enable = true;
-	enable32Bit = true;
+        enable = true;
+        enable32Bit = true;
     };
 
     networking.hostName = "pt";
@@ -60,6 +60,7 @@ in
         lutris
         wineWowPackages.waylandFull
         winetricks
+        mangohud
     ];
 
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

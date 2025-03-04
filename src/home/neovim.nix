@@ -126,6 +126,8 @@
             require("lspconfig").ruff.setup{ capabilities = capabilities, }
             require("lspconfig").pyright.setup{ capabilities = capabilities, }
             require("lspconfig").rust_analyzer.setup{ capabilities = capabilities, }
+            require("lspconfig").clangd.setup{ capabilities = capabilities, }
+            require("lspconfig").cmake.setup{ capabilities = capabilities, }
 
             require('marks').setup()
 
