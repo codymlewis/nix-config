@@ -57,6 +57,11 @@
                         installation_mode = "force_installed";
                         default_area = "menupanel";
                     };
+                    "{a9c2ad37-e940-4892-8dce-cd73c6cbbc0c}" = {
+                        install_url = "https://addons.mozilla.org/firefox/downloads/latest/feedbroreader/latest.xpi";
+                        installation_mode = "force_installed";
+                        default_area = "menupanel";
+                    };
                 };
 
                 Preferences = {
