@@ -7,9 +7,14 @@
             url = "github:nix-community/home-manager/release-24.11";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        plasma-manager = {
+            url = "github:nix-community/plasma-manager";
+            inputs.nixpkgs.follows = "nixpkgs";
+            inputs.home-manager.follows = "home-manager";
+        };
     };
 
-    outputs = { self, nixpkgs, home-manager, ... }: {
+    outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, ... }: {
         # Home desktop
         nixosConfigurations.pt = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
@@ -19,7 +24,12 @@
                 home-manager.nixosModules.home-manager {
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
-                    home-manager.users.cody = import ./home.nix;
+                    home-manager.users.cody = {
+                        imports = [
+                            inputs.plasma-manager.homeManagerModules.plasma-manager
+                            ./home.nix
+                        ];
+                    };
                 }
             ];
         };
@@ -33,7 +43,12 @@
                 home-manager.nixosModules.home-manager {
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
-                    home-manager.users.cody = import ./home.nix;
+                    home-manager.users.cody = {
+                        imports = [
+                            inputs.plasma-manager.homeManagerModules.plasma-manager
+                            ./home.nix
+                        ];
+                    };
                 }
             ];
         };

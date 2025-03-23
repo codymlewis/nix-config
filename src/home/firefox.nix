@@ -102,10 +102,6 @@
                     url = "https://www.overleaf.com";
                 }
                 {
-                    label = "canvas";
-                    url = "https://canvas.newcastle.edu.au";
-                }
-                {
                     label = "youtube";
                     url = "https://www.youtube.com";
                 }

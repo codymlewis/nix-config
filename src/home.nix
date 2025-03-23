@@ -15,8 +15,10 @@
         ./home/firefox.nix
         ./home/fish.nix
         ./home/git.nix
+        ./home/konsole.nix
         ./home/mpv.nix
         ./home/neovim.nix
+        ./home/plasma.nix
     ];
 
     home.stateVersion = "24.11";
