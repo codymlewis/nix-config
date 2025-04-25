@@ -1,0 +1,3 @@
+user_pref("browser.newtabpage.activity-stream.topSitesRows", 2);
+user_pref("browser.newtabpage.pinned", "[{\"label\":\"proton\",\"url\":\"https://www.proton.me\"},{\"label\":\"github\",\"url\":\"https://www.github.com\"},{\"label\":\"standard notes\",\"url\":\"https://app.standardnotes.com\"},{\"label\":\"UoN Email\",\"url\":\"https://outlook.office.com/mail/\"},{\"label\":\"overleaf\",\"url\":\"https://www.overleaf.com\"},{\"label\":\"youtube\",\"url\":\"https://www.youtube.com\"},{\"label\":\"twitch\",\"url\":\"https://twitch.tv\"},{\"label\":\"steam\",\"url\":\"https://store.steampowered.com\"},{\"label\":\"one piece\",\"url\":\"https://mangaplus.shueisha.co.jp/titles/100020\"}]");
+user_pref("browser.startup.homepage", "about:home");

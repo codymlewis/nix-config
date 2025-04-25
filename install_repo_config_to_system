@@ -1,3 +1,14 @@
 #!/bin/sh
 
-sudo cp -ru ./src/* /etc/nixos/
+cp src/konsole/default.profile $HOME/.local/share/konsole/default.profile
+cp src/plasma/* $HOME/.config/
+cp src/firefox/* $HOME/.mozilla/firefox/default/
+
+cp -r src/{zsh,git,mpv,nvim} $HOME/.config/
+
+echo << EOF > $HOME/.zshenv
+export XDG_CONFIG_HOME=\${XDG_CONFIG_HOME:=\${HOME}/.config}
+export ZDOTDIR=\${ZDOTDIR:=\${XDG_CONFIG_HOME}/zsh}
+EOF
+
+sudo pacman -Sy - < src/packages

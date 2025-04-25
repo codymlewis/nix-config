@@ -1,0 +1,21 @@
+[commit]
+    gpgSign = true
+
+[credential "helper"]
+    store = true
+
+[gpg]
+    program = "gpg2"
+
+[init]
+    defaultBranch = "main"
+
+[push]
+    autoSetupRemote = true
+
+[tag]
+    gpgSign = true
+
+[user]
+    email = "hello@codymlewis.com"
+    name = "Cody Lewis"
