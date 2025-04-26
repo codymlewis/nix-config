@@ -8,6 +8,7 @@ bindkey -e
 precmd() { vcs_info }
 
 zstyle ':vcs_info:git:*' formats '(%b)%F{red}%m%u%c'
+zstyle ':vcs_info:*' check-for-changes true
 
 setopt PROMPT_SUBST
 PROMPT='%F{green}%n%F{white}@%m %F{cyan}%/ %F{white}%# '
@@ -20,3 +21,4 @@ alias vi="nvim"
 alias ss="sudo systemctl"
 alias p="sudo pacman"
 alias ls="ls --color=auto"
+alias ..="cd ../"

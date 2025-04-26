@@ -2,6 +2,7 @@
 
 cp $HOME/.local/share/konsole/default.profile src/konsole/default.profile
 cp $HOME/.config/{kdeglobals,kglobalshortcutsrc,kwinrc,kxkbrc} src/plasma/
-cp $HOME/.mozilla/firefox/default/ src/firefox/
+cp /usr/lib/firefox/distribution/policy.json src/firefox/policy.json
+cp $HOME/.config/zsh/{.zshrc,.zprofile} src/zsh/
 
-cp -r $HOME/.config/{zsh,git,mpv,nvim} src/
+cp -r $HOME/.config/{git,mpv,nvim} src/

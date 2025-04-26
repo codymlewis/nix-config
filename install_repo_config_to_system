@@ -2,7 +2,7 @@
 
 cp src/konsole/default.profile $HOME/.local/share/konsole/default.profile
 cp src/plasma/* $HOME/.config/
-cp src/firefox/* $HOME/.mozilla/firefox/default/
+cp src/firefox/policy.json /usr/lib/firefox/distribution/policy.json
 
 cp -r src/{zsh,git,mpv,nvim} $HOME/.config/
 
