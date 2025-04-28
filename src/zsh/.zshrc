@@ -22,3 +22,6 @@ alias ss="sudo systemctl"
 alias p="sudo pacman"
 alias ls="ls --color=auto"
 alias ..="cd ../"
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

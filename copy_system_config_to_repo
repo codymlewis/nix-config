@@ -1,8 +1,9 @@
 #!/bin/sh
 
 cp $HOME/.local/share/konsole/default.profile src/konsole/default.profile
-cp $HOME/.config/{kdeglobals,kglobalshortcutsrc,kwinrc,kxkbrc} src/plasma/
-cp /usr/lib/firefox/distribution/policy.json src/firefox/policy.json
+cp $HOME/.config/{kdeglobals,kglobalshortcutsrc,kxkbrc} src/plasma/
+grep -v 'Latitude
+Longitude' $HOME/.config/kwinrc > src/plasma/kwinrc
 cp $HOME/.config/zsh/{.zshrc,.zprofile} src/zsh/
 
 cp -r $HOME/.config/{git,mpv,nvim} src/

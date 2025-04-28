@@ -157,8 +157,8 @@ require('marks').setup()
 require('nvim-autopairs').setup()
 
 require("ibl").setup()
-vim.g.tex_conceal = ""
-vim.g.gitgutter_enabled = 1
+
+require("gitsigns").setup()
 
 require('lualine').setup{
     options = { theme = 'codedark', }
