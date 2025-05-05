@@ -126,6 +126,8 @@ vim.keymap.set({'n', 'v'}, '<leader>dh', function() require('dap.ui.widgets').ho
 vim.keymap.set({'n', 'v'}, '<leader>dp', function() require('dap.ui.widgets').preview() end, options)
 require("dap-python").setup("uv")
 
+vim.keymap.set('n', '<leader>g', function() require('neogit').open() end, options)
+
 vim.keymap.set("n", ";", "gcc", { remap = true })
 vim.keymap.set("v", ";", "gc", { remap = true })
 
