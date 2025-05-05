@@ -64,6 +64,8 @@ vim.o.background = 'dark'
 vim.o.encoding = 'utf8'
 vim.o.swapfile = false
 vim.o.title = true
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 vim.wo.number = true
 vim.wo.lbr = true
@@ -98,7 +100,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 vim.api.nvim_create_autocmd({'BufLeave', 'FocusLost'}, {
-    pattern = { '*' },
+    pattern = { '*.*' },
     callback = function()
         vim.api.nvim_command [[write]]
     end,
@@ -110,10 +112,19 @@ vim.g.mapleader = ' '
 
 options = { noremap = true }
 vim.api.nvim_set_keymap('n', '<leader>s', ':setlocal spell!<cr>', options)
-vim.api.nvim_set_keymap('n', '<leader>p', ':set paste!<cr>', options)
 vim.api.nvim_set_keymap('n', '<leader>e', ':Explore<cr>', options)
+vim.api.nvim_set_keymap('n', '<leader>t', ':vsplit term://zsh<cr>', options)
 vim.api.nvim_set_keymap('n', '<s-tab>', ':bprevious<cr>', options)
 vim.api.nvim_set_keymap('n', '<tab>', ':bnext<cr>', options)
+
+vim.keymap.set('n', '<leader>b', function() require('dap').toggle_breakpoint() end, options)
+vim.keymap.set('n', '<leader>c', function() require('dap').continue() end, options)
+vim.keymap.set('n', '<leader>i', function() require('dap').step_into() end, options)
+vim.keymap.set('n', '<leader>o', function() require('dap').step_over() end, options)
+vim.keymap.set({'n', 'v'}, '<leader>dd', function() require('dap').disconnect() end, options)
+vim.keymap.set({'n', 'v'}, '<leader>dh', function() require('dap.ui.widgets').hover() end, options)
+vim.keymap.set({'n', 'v'}, '<leader>dp', function() require('dap.ui.widgets').preview() end, options)
+require("dap-python").setup("uv")
 
 vim.keymap.set("n", ";", "gcc", { remap = true })
 vim.keymap.set("v", ";", "gc", { remap = true })
@@ -159,6 +170,7 @@ require('nvim-autopairs').setup()
 require("ibl").setup()
 
 require("gitsigns").setup()
+require("neogit").setup{}
 
 require('lualine').setup{
     options = { theme = 'codedark', }

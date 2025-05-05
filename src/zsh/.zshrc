@@ -5,6 +5,11 @@ zstyle ':completion:*' menu select
 
 bindkey -e
 
+export HISTFILE=${HOME}/.cache/zsh/zsh_history
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt SHARE_HISTORY
+
 precmd() { vcs_info }
 
 zstyle ':vcs_info:git:*' formats '(%b)%F{red}%m%u%c'
