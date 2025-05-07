@@ -122,6 +122,7 @@ vim.keymap.set('n', '<leader>c', function() require('dap').continue() end, optio
 vim.keymap.set('n', '<leader>i', function() require('dap').step_into() end, options)
 vim.keymap.set('n', '<leader>o', function() require('dap').step_over() end, options)
 vim.keymap.set({'n', 'v'}, '<leader>dd', function() require('dap').disconnect() end, options)
+vim.keymap.set({'n', 'v'}, '<leader>dr', function() require('dap').repl.open() end, options)
 vim.keymap.set({'n', 'v'}, '<leader>dh', function() require('dap.ui.widgets').hover() end, options)
 vim.keymap.set({'n', 'v'}, '<leader>dp', function() require('dap.ui.widgets').preview() end, options)
 require("dap-python").setup("uv")
